@@ -24,8 +24,10 @@ namespace web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            // Cargar la Configuración del Unity
             Bootstrapper.Initialise();
 
         }
+
     }
 }

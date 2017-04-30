@@ -13,13 +13,21 @@ namespace web.Controllers
     public class StudentController : Controller
     {
 
+        /**
+         * Inyección de las dependencias 
+         * 
+         * Constructor - anotaciones
+         * 
+         */
+
+        // anotaciones
         [Dependency]
         protected StudentDependencies dependencies {set; get;}
-
 
         protected readonly RepositoryContract<student> repository;
 
 
+        // a través del constructor
         public StudentController(RepositoryContract<student> repository )
         {
             this.repository = repository;
@@ -27,7 +35,7 @@ namespace web.Controllers
 
 
         /**
-         * show all students         
+         * Filtro de Alumnos
          */
         public ActionResult Index( String search )
         {
@@ -47,32 +55,10 @@ namespace web.Controllers
 
 
         /**
-         * Display edit form 
-         */
-        public ActionResult edit(int id)
-        {
-            ViewBag.districts = this.dependencies.districts();
-            return View(this.repository.findOrFail(id));
-        }
-
-
-        public ActionResult destroy( int id )
-        {
-
-            student Student = this.repository.findOrFail(id);
-
-            if (this.repository.delete(Student)) {
-                TempData["message"] = String.Format("Alumno {0} fue Eliminado", Student.full_name);
-            }
-
-            return RedirectToRoute("students.index");
-        }
-
-        /**
-        * create new resource in database
+        * Registrar nuevo alumno
         */
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] // token de seguridad
         public ActionResult create(student Student)
         {
             ViewBag.districts = this.dependencies.districts();
@@ -92,17 +78,26 @@ namespace web.Controllers
         }
 
 
+        /**
+         * Display edit form 
+         */
+        public ActionResult edit(int id)
+        {
+            ViewBag.districts = this.dependencies.districts();
+            return View(this.repository.findOrFail(id));
+        }
 
         /**
-          * update resource in database
-          */
+         * Modifica un Alumno
+         */
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult edit(int id, student Student)
         {
             ViewBag.districts = this.dependencies.districts();
-            
-            if (!ModelState.IsValid) {
+
+            if (!ModelState.IsValid)
+            {
                 return View(Student);
             }
 
@@ -112,12 +107,29 @@ namespace web.Controllers
                 return View(Student);
             }
 
-           // student current = this.repository.findOrFail(id);
-
             this.repository.save(Student);
 
             return RedirectToRoute("students.index");
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] // token de seguridad
+        public ActionResult destroy(int id)
+        {
+            student Student = this.repository.findOrFail(id);
+
+            if (this.repository.delete(Student))
+            {
+                TempData["message"] = String.Format("Alumno {0} fue Eliminado", Student.full_name);
+            }
+
+            return RedirectToRoute("students.index");
+        }
+
+
+
+
 
 
         protected String getEmailErrorMessage()

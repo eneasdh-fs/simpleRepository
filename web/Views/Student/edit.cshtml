@@ -17,6 +17,7 @@
                         <p> <strong>¿Elimnar Estudiante?</strong> </p>
                         @using (Html.BeginRouteForm("students.destroy", new { id = Model.id }, FormMethod.Post, new { @class = "text-right"}))
                         {
+                            @Html.AntiForgeryToken()
                             <button class="waves-effect waves-light btn  red darken-4"> Elimnar</button>     
                         }
                     </div>

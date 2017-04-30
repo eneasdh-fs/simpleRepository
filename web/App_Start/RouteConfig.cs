@@ -20,7 +20,7 @@ namespace web
                 defaults: new { controller = "Home", action = "Index" }
             );
 
-
+            // Muestra lista de alumnos
             routes.MapRoute(
                 name: "students.index",
                 url: "students/",
@@ -28,6 +28,7 @@ namespace web
                 constraints: new { HttpMethod = new HttpMethodConstraint(new String[] { "GET" }) }
             );
 
+            // Mostrar formulario para registrar un alumno
             routes.MapRoute(
                 name:"students.create",
                 url: "students/create",
@@ -35,6 +36,7 @@ namespace web
                 constraints: new { HttpMethod = new HttpMethodConstraint(new String[] { "GET" }) }
             );
 
+            // Registrar un nuevo alumno
             routes.MapRoute(
                 name: "students.store",
                 url: "students/create",
@@ -42,6 +44,7 @@ namespace web
                 constraints: new { HttpMethod = new HttpMethodConstraint(new String[] { "POST" }) }
             );
 
+            // Mostrar formulario para editar alumno
             routes.MapRoute(
                 name: "students.edit",
                 url: "students/{id}/edit",
@@ -49,6 +52,7 @@ namespace web
                 constraints: new { HttpMethod = new HttpMethodConstraint(new String[] { "GET" }) }
             );
 
+            //Modificar alumno
             routes.MapRoute(
                 name: "students.update",
                 url: "students/{id}/edit",
@@ -56,6 +60,7 @@ namespace web
                 constraints: new { HttpMethod = new HttpMethodConstraint(new String[] { "POST" }) }
             );
 
+            // Eliminar alumno
             routes.MapRoute(
                 name: "students.destroy",
                 url: "students/{id}/",
