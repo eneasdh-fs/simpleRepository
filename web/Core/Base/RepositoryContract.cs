@@ -13,7 +13,10 @@ namespace web.Core.Base
 
         //return all rows
         IEnumerable<TEnt> all();
-        
+
+        //filter records
+        IEnumerable<TEnt> search( String search );
+ 
         //find Resource
         TEnt find(int id);
 

@@ -13,13 +13,13 @@ namespace web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            /*
+         
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                name: "home",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" }
             );
-            */
+
 
             routes.MapRoute(
                 name: "students.index",
@@ -60,7 +60,7 @@ namespace web
                 name: "students.destroy",
                 url: "students/{id}/",
                 defaults: new { controller = "Student", action = "destroy" },
-                constraints: new { HttpMethod = new HttpMethodConstraint(new String[] { "DELETE" }) }
+                constraints: new { HttpMethod = new HttpMethodConstraint(new String[] { "POST" }) }
             );
 
 

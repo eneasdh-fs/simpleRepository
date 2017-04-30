@@ -15,9 +15,9 @@
                 <div id="card-alert" class="card red">
                     <div class="card-content white-text">
                         <p> <strong>¿Elimnar Estudiante?</strong> </p>
-                        @using (Html.BeginRouteForm("students.destroy", new { id = Model.id }))
+                        @using (Html.BeginRouteForm("students.destroy", new { id = Model.id }, FormMethod.Post, new { @class = "text-right"}))
                         {
-
+                            <button class="waves-effect waves-light btn  red darken-4"> Elimnar</button>     
                         }
                     </div>
                 </div>

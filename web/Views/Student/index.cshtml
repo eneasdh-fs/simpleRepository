@@ -3,31 +3,56 @@
     ViewBag.Title = "create list | app";
 }
 
-<h2>index</h2>
+<h2>Alumnos</h2>
 <div class="row">
 
 
 
     <div class="card">
 
-        <div class="card-action">
-            @Html.RouteLink("Registrar", "students.create", new { @class="text-right" })
+        <div class="card-action text-right">
+            @Html.RouteLink("Registrar", "students.create", new { @class = "text-right" })
         </div>
 
+        @if (TempData["Message"] != null)
+        {
+            <div class="row">
+                <div id="card-alert" class="card orange">
+                    <div class="card-content white-text">
+                        <p> <strong>@TempData["Message"]</strong> </p>
+                    </div>
+                </div>
+            </div>
+        }
+
         <div class="card-content">
-            <table>
+    
+
+
+            <div class="row">
+                <form method="GET">
+                    <div class="input-field col m6 s12">
+                        @Html.TextBox("search", null, new { @class = "validate", placeholder="por nombres o id de alumno" })
+                        <label for="search">Buscar</label>
+                    </div>                
+                </form>
+            </div> 
+
+            <table class="table-responsivve">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Distrito</th>
-                        <th class="text-center">*</th>
+                        <th width="2%">ID</th>
+                        <th width="50%">Nombre</th>
+                        <th width="30%">Email</th>
+                        <th width="20%">Distrito</th>
+                        <th width="5%" class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach(var student in Model){
                         <tr>
+                            <td>@student.id</td>
                             <td>@student.full_name</td>
                             <td>@student.email</td>
                             <td>@student.district.name</td>
@@ -43,3 +68,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('search').focus();
+</script>

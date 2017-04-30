@@ -36,7 +36,9 @@ namespace web.Core.Student
 
         public bool delete(student entity)
         {
-            throw new NotImplementedException();
+            context.students.Remove(entity);
+
+            return context.SaveChanges() > 0;
         }
 
         public bool save(student entity)
@@ -57,6 +59,29 @@ namespace web.Core.Student
             }
 
             return Student;
+        }
+
+
+        public IEnumerable<student> search(String search)
+        {
+            int number;
+
+            Boolean s = String.IsNullOrEmpty(search);
+
+            if ( ! String.IsNullOrEmpty(search)) {
+
+                var q = this.context.students.Include("district");
+
+                if ( int.TryParse(search, out number)) {
+                    int id = int.Parse(search);
+                    return q.Where(x => x.id == id).ToList();
+                }
+
+                return q.Where(x => x.full_name.Contains(search)).ToList();
+
+            }
+
+            return this.all();
         }
     }
 }

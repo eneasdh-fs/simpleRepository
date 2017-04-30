@@ -19,5 +19,18 @@ namespace web.Core.Student
         {
             return context.districts.ToList();
         }
+
+        public Boolean isEmailUnique(String email, int id = 0 )
+        {
+
+            var query = context.students.Where(x => x.email == email);
+
+            if (id > 0) {
+                return query.Where(x => x.id != id).FirstOrDefault() == null;
+            }
+
+
+            return query.FirstOrDefault() == null;
+        }
     }
 }

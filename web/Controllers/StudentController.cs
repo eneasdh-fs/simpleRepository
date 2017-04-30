@@ -29,9 +29,9 @@ namespace web.Controllers
         /**
          * show all students         
          */
-        public ActionResult Index()
+        public ActionResult Index( String search )
         {
-            return View( this.repository.all() );
+            return View( this.repository.search( search ) );
         }
 
 
@@ -56,6 +56,17 @@ namespace web.Controllers
         }
 
 
+        public ActionResult destroy( int id )
+        {
+
+            student Student = this.repository.findOrFail(id);
+
+            if (this.repository.delete(Student)) {
+                TempData["message"] = String.Format("Alumno {0} fue Eliminado", Student.full_name);
+            }
+
+            return RedirectToRoute("students.index");
+        }
 
         /**
         * create new resource in database
@@ -65,10 +76,16 @@ namespace web.Controllers
         public ActionResult create(student Student)
         {
             ViewBag.districts = this.dependencies.districts();
-
+            
             if (!ModelState.IsValid ) {
                 return View(Student);
             }
+
+            if (! this.dependencies.isEmailUnique(Student.email)) {
+                ModelState.AddModelError("email", this.getEmailErrorMessage());
+                return View(Student);
+            }
+
 
             this.repository.add( Student );
             return RedirectToRoute("students.index");
@@ -89,6 +106,12 @@ namespace web.Controllers
                 return View(Student);
             }
 
+            if (!this.dependencies.isEmailUnique(Student.email, Student.id))
+            {
+                ModelState.AddModelError("email", this.getEmailErrorMessage());
+                return View(Student);
+            }
+
            // student current = this.repository.findOrFail(id);
 
             this.repository.save(Student);
@@ -97,6 +120,10 @@ namespace web.Controllers
         }
 
 
+        protected String getEmailErrorMessage()
+        {
+            return "El E-mail ya fue Utilizado";
+        }
 
     }
 }

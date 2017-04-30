@@ -38,5 +38,7 @@ namespace connection
         {
             this.full_name = this.last_name + " " + this.first_name;
         }
+
+
     }
 }
