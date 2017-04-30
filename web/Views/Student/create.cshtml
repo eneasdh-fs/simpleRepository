@@ -1,0 +1,36 @@
+﻿@model  connection.student
+
+@using connection;
+
+@{
+    
+    ViewBag.Title = "create student | app";
+    List<district> districts = ViewBag.districts;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+
+<div class="row">
+
+    @using (Html.BeginRouteForm("students.store", FormMethod.Post, new { @class = "col s12", }))
+    {
+        <div class="card">
+            
+
+            <div class="card-content">
+     
+                    
+                    @Html.Partial("~/Views/Student/partials/fields.cshtml")
+                    <div class="row">
+                        <button class="waves-effect waves-light btn  blue darken-3"> Guardar</button>
+                    </div>
+           
+             
+
+            </div>
+    
+        </div>
+    }    
+ 
+</div>

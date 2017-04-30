@@ -1,0 +1,45 @@
+﻿@{
+
+    ViewBag.Title = "create list | app";
+}
+
+<h2>index</h2>
+<div class="row">
+
+
+
+    <div class="card">
+
+        <div class="card-action">
+            @Html.RouteLink("Registrar", "students.create", new { @class="text-right" })
+        </div>
+
+        <div class="card-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Distrito</th>
+                        <th class="text-center">*</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach(var student in Model){
+                        <tr>
+                            <td>@student.full_name</td>
+                            <td>@student.email</td>
+                            <td>@student.district.name</td>
+                            <td>
+                                @Html.RouteLink("Editar", "students.edit", new {id=student.id })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

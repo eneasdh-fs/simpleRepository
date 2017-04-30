@@ -1,0 +1,9 @@
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\bin\Debug\connection.dll.config
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\bin\Debug\connection.dll
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\bin\Debug\connection.pdb
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\bin\Debug\EntityFramework.dll
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\bin\Debug\EntityFramework.xml
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\bin\Debug\es\EntityFramework.resources.dll
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\obj\Debug\connection.dll
+c:\users\enea\documents\visual studio 2013\Projects\usable\connection\obj\Debug\connection.pdb
+C:\Users\enea\documents\visual studio 2013\Projects\usable\connection\obj\Debug\connection.csprojResolveAssemblyReference.cache

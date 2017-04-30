@@ -1,0 +1,37 @@
+﻿@model  connection.student
+
+
+@Html.AntiForgeryToken()
+
+
+
+<div class="row">
+    <div class="input-field col m6 s12">
+        @Html.TextBoxFor(model => model.first_name, null, new { @class = "validate", id = "first_name" })
+        <label for="first_name">Nombre</label>
+        @Html.ValidationMessageFor(model => model.first_name)
+
+    </div>
+    <div class="input-field col m6 s12">
+        @Html.TextBoxFor(model => model.last_name, null, new { @class = "validate", id = "last_name" })
+        <label for="first_name">Apellidos</label>
+        @Html.ValidationMessageFor(model => model.last_name)
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="input-field col s12">
+        @Html.TextBoxFor(model => model.email, null, new { @class = "validate", id = "email" })
+        <label for="first_name">E-mail</label>
+        @Html.ValidationMessageFor(model => model.email)
+    </div>
+</div>
+
+<div class="row">
+    <div class="input-field col s12">
+        @Html.DropDownListFor(model => model.district_id, new SelectList(ViewBag.districts, "id", "name"), new { @class = "validate" })
+        <label for="first_name">Distrito</label>
+        @Html.ValidationMessageFor(model => model.district_id)
+    </div>
+</div>

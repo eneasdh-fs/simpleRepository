@@ -1,0 +1,45 @@
+﻿@model  connection.student
+
+@{
+    ViewBag.Title = "edit";
+}
+
+<div class="row">
+
+ 
+    <div class="card">
+
+        <div class="card-content">
+
+            <div class="row">
+                <div id="card-alert" class="card red">
+                    <div class="card-content white-text">
+                        <p> <strong>¿Elimnar Estudiante?</strong> </p>
+                        @using (Html.BeginRouteForm("students.destroy", new { id = Model.id }))
+                        {
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @using (Html.BeginRouteForm("students.update", new { id = Model.id }, FormMethod.Post, new { @class = "col s12", }))
+            {
+
+                <div class="row">
+                    <h3>Editar - <small>@Model.full_name</small></h3>
+                </div>
+
+
+                @Html.Partial("~/Views/Student/partials/fields.cshtml")
+                <div class="row">
+                    <button class="waves-effect waves-light btn  blue darken-3"> Guardar</button>
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+   
+</div>
